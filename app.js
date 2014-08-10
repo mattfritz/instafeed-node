@@ -1,13 +1,16 @@
 // Packages
 var express     = require('express'),
     app         = express(),
+    config      = require('config'),
     bodyParser  = require('body-parser'),
     mongoose    = require('mongoose'),
     ig          = require('instagram-node').instagram();
 
 // Configuration
-var port = process.env.PORT || 3000; // App port
-var host = 'YOUR_HOST';
+var port = config.get('App.Port');
+var host = config.get('App.Host');
+var igClientId = config.get('Instagram.clientId');
+var igClientSecret = config.get('Instagram.clientSecret');
 
 mongoose.connect('mongodb://localhost:27017');
 
@@ -15,8 +18,8 @@ app.use(bodyParser());
 
 // Instagram config
 ig.use({
-  client_id:     'YOUR_CLIENT_ID',
-  client_secret: 'YOUR_CLIENT_SECRET'
+  client_id:     igClientId,
+  client_secret: igClientSecret
 });
 
 ig.add_tag_subscription('funny', host + '/tag/funny', function(err, result, limit){

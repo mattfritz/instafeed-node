@@ -1,0 +1,10 @@
+{
+  "App": {
+    "Host": "YOUR_HOST_HERE",
+    "Port": 3000
+  },
+  "Instagram": {
+    "clientId": "YOUR_CLIENT_ID_HERE",
+    "clientSecret": "YOUR_CLIENT_SECRET_HERE"
+  }
+}
