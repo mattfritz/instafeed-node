@@ -36,7 +36,7 @@ ig.add_tag_subscription(tags, host + igCallbackPath, function(err, result, limit
 });
 
 // Routes
-app.route(gCallbackPath)
+app.route(igCallbackPath)
 .get(function(req, res) {
   console.log('TAG CHALLENGE REQUESTED');
   res.send(req.query['hub.challenge']);
