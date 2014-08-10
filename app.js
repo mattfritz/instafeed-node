@@ -7,10 +7,10 @@ var express     = require('express'),
     ig          = require('instagram-node').instagram();
 
 // Configuration
-var port = config.get('App.Port');
-var host = config.get('App.Host');
-var igClientId = config.get('Instagram.clientId');
-var igClientSecret = config.get('Instagram.clientSecret');
+var port           = config.get('App.Port'),
+    host           = config.get('App.Host'),
+    igClientId     = config.get('Instagram.clientId'),
+    igClientSecret = config.get('Instagram.clientSecret');
 
 mongoose.connect('mongodb://localhost:27017');
 
