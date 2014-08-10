@@ -3,9 +3,11 @@ var express     = require('express'),
     app         = express(),
     bodyParser  = require('body-parser'),
     mongoose    = require('mongoose'),
-    port        = process.env.PORT || 8080;
+    instagram   = require('instagram-node').instagram();
 
 // Configuration
+var port = process.env.PORT || 8080; // App port
+
 mongoose.connect('mongodb://localhost:27017');
 
 app.use(bodyParser());
