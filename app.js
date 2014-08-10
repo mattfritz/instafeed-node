@@ -10,29 +10,37 @@ var express     = require('express'),
 var port           = config.get('App.Port'),
     host           = config.get('App.Host'),
     igClientId     = config.get('Instagram.clientId'),
-    igClientSecret = config.get('Instagram.clientSecret');
+    igClientSecret = config.get('Instagram.clientSecret'),
+    igCallbackPath = config.get('Instagram.callbackPath'),
+    tags           = config.get('Instagram.search.tags');
 
 mongoose.connect('mongodb://localhost:27017');
 
 app.use(bodyParser());
 
-// Instagram config
+// Instagram API setup
 ig.use({
   client_id:     igClientId,
   client_secret: igClientSecret
 });
 
-ig.add_tag_subscription('funny', host + '/tag/funny', function(err, result, limit){
-  console.log(result);
-  console.log('ADDED SUB');
+ig.add_tag_subscription(tags, host + igCallbackPath, function(err, result, limit){
+  console.log('REQUESTING SUBSCRIPTION FOR TAG: ' + tags);
+  if (err) {
+    console.log('***SUBSCRIPTION REQUEST FAILED***');
+    console.log(err);
+  } else {
+    console.log(result);
+    console.log('SUBSCRIPTION REQUEST SUCCESSFUL');
+  }
 });
 
 // Routes
-app.route('/tag/funny')
+app.route(gCallbackPath)
 .get(function(req, res) {
-  console.log('TAG PAGE REQUESTED');
+  console.log('TAG CHALLENGE REQUESTED');
   res.send(req.query['hub.challenge']);
-  console.log('CHALLENGE RETURNED');
+  console.log('TAG CHALLENGE RETURNED');
 })
 .post(function(req, res) {
   console.log(req);
