@@ -12,7 +12,7 @@ var port           = config.get('App.Port'),
     igClientId     = config.get('Instagram.clientId'),
     igClientSecret = config.get('Instagram.clientSecret'),
     igCallbackPath = config.get('Instagram.callbackPath'),
-    tags           = config.get('Instagram.search.tags');
+    tags           = config.get('Instagram.tags');
 
 mongoose.connect('mongodb://localhost:27017');
 
