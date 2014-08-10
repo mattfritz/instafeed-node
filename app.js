@@ -3,28 +3,39 @@ var express     = require('express'),
     app         = express(),
     bodyParser  = require('body-parser'),
     mongoose    = require('mongoose'),
-    instagram   = require('instagram-node').instagram();
+    ig          = require('instagram-node').instagram();
 
 // Configuration
-var port = process.env.PORT || 8080; // App port
+var port = process.env.PORT || 3000; // App port
+var host = 'YOUR_HOST';
 
 mongoose.connect('mongodb://localhost:27017');
 
 app.use(bodyParser());
 
+// Instagram config
+ig.use({
+  client_id:     'YOUR_CLIENT_ID',
+  client_secret: 'YOUR_CLIENT_SECRET'
+});
+
+ig.add_tag_subscription('funny', host + '/tag/funny', function(err, result, limit){
+  console.log(result);
+  console.log('ADDED SUB');
+});
+
 // Routes
-var router = express.Router();
-
-router.get('/', function(req, res) {
-  res.json({ message: 'test json' });
+app.route('/tag/funny')
+.get(function(req, res) {
+  console.log('TAG PAGE REQUESTED');
+  res.send(req.query['hub.challenge']);
+  console.log('CHALLENGE RETURNED');
+})
+.post(function(req, res) {
+  console.log(req);
 });
-
-router.get('/html', function(req, res) {
-  res.send('<h1>Test HTML</h1>');
-});
-
-app.use(router);
 
 // Server
 app.listen(port);
 console.log('Server is running at http://localhost:' + port);
+
