@@ -45,9 +45,8 @@ app.route(igCallbackPath)
 })
 .post(function(req, res) {
   //console.log(req);
-  ig.tag(tags, function(err, result, limit) {
-    console.log(err);
-    console.log(result);
+  ig.tag_media_recent(tags, function(err, medias, pagination, lim) {
+    console.log(medias);
   });
 });
 
