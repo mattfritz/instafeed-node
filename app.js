@@ -44,7 +44,7 @@ app.route(igCallbackPath)
 })
 .post(function(req, res) {
   //console.log(req);
-  ig.tag_search(tags, function(err, result, limit) {
+  ig.tag(tags, function(err, result, limit) {
     console.log(result);
   });
 });
