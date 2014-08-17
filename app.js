@@ -9,12 +9,13 @@ var express     = require('express'),
 // Configuration
 var port           = config.get('App.Port'),
     host           = config.get('App.Host'),
+    mongo          = config.get('Mongo.conn'),
     igClientId     = config.get('Instagram.clientId'),
     igClientSecret = config.get('Instagram.clientSecret'),
     igCallbackPath = config.get('Instagram.callbackPath'),
     tags           = config.get('Instagram.tags');
 
-mongoose.connect('mongodb://localhost:27017');
+mongoose.connect(mongo);
 
 app.use(bodyParser());
 
