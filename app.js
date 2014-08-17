@@ -43,8 +43,9 @@ app.route(igCallbackPath)
   console.log('TAG CHALLENGE RETURNED');
 })
 .post(function(req, res) {
-  console.log(req);
+  //console.log(req);
   ig.tag(tags, function(err, result, limit) {
+    console.log(err);
     console.log(result);
   });
 });
