@@ -1,0 +1,13 @@
+var config    = require('config'),
+    mocha     = require('mocha'),
+    request   = require('supertest'),
+    chai      = require('chai'),
+    app       = require('../app').app;
+
+describe('GET /', function() {
+  it('responds with HTML', function(done) {
+    request(app)
+      .get('/')
+      .expect(200, done);
+  });
+});
