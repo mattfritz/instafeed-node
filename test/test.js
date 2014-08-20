@@ -1,5 +1,4 @@
 var config    = require('config'),
-    mocha     = require('mocha'),
     request   = require('supertest'),
     chai      = require('chai'),
     app       = require('../app').app;
