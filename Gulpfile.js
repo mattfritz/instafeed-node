@@ -3,31 +3,26 @@ var gulp     = require('gulp'),
     istanbul = require('gulp-istanbul'),
     exit     = require('gulp-exit');
 
-var sources = {
-  test: ['./test/*.js'],
-  app:  ['app.js']
-};
+var paths = {
+      test: ['./test/*.js'],
+      app:  ['app.js']
+    };
 
-var testRunner = function() {
-  gulp.src('./test/test.js', {read: false})
-    .pipe(mocha({
+var mochaConfig = {
       reporter: 'progress',
       timeout: 2000
-    }))
-    .pipe(exit());
-};
+    };
 
 gulp.task('default', ['test']);
 
 gulp.task('test', function() {
-  return testRunner();
-});
-
-gulp.task('coverage', function() {
-  return gulp.src(sources.app)
+  return gulp.src(paths.app)
     .pipe(istanbul())
     .on('finish', function() {
-      testRunner();
+      gulp.src(paths.test)
+        .pipe(mocha(mochaConfig))
+        .pipe(istanbul.writeReports())
+        .pipe(exit());
     });
 });
 
