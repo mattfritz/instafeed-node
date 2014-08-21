@@ -1,7 +1,6 @@
 var gulp     = require('gulp'),
     mocha    = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
-    exit     = require('gulp-exit'),
     nodemon  = require('gulp-nodemon');
 
 var paths = {
@@ -14,7 +13,7 @@ var mochaConfig = {
       timeout: 2000
     };
 
-gulp.task('default', ['test']);
+gulp.task('default', ['serve']);
 
 gulp.task('test', function() {
   return gulp.src(paths.app)
@@ -22,8 +21,7 @@ gulp.task('test', function() {
     .on('finish', function() {
       gulp.src(paths.test)
         .pipe(mocha(mochaConfig))
-        .pipe(istanbul.writeReports())
-        .pipe(exit());
+        .pipe(istanbul.writeReports());
     });
 });
 
