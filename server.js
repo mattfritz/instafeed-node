@@ -1,4 +1,4 @@
-var app    = require('./app'),
+var app    = require('./lib/app'),
     config = require('config'),
     port   = config.get('App.Port');
 

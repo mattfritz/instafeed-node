@@ -1,7 +1,7 @@
 var config    = require('config'),
     request   = require('supertest'),
     chai      = require('chai'),
-    app       = require('../app');
+    app       = require('../lib/app');
 
 describe('App', function() {
 

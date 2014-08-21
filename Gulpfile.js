@@ -5,7 +5,7 @@ var gulp     = require('gulp'),
 
 var paths = {
       test: ['./test/*.js'],
-      app:  ['app.js']
+      app:  ['server.js', './lib/*']
     };
 
 var mochaConfig = {
