@@ -2,8 +2,7 @@ var gulp     = require('gulp'),
     mocha    = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
     exit     = require('gulp-exit'),
-    config   = require('config'),
-    app      = require('./app');
+    nodemon  = require('gulp-nodemon');
 
 var paths = {
       test: ['./test/*.js'],
@@ -15,7 +14,7 @@ var mochaConfig = {
       timeout: 2000
     };
 
-gulp.task('default', ['test']);
+gulp.task('default', ['test', 'serve']);
 
 gulp.task('test', function() {
   return gulp.src(paths.app)
@@ -29,7 +28,9 @@ gulp.task('test', function() {
 });
 
 gulp.task('serve', function() {
-  var port = config.get('App.Port');
-  app.listen(port);
-  console.log('Server is running at http://localhost:' + port);
+  nodemon({ script: 'server.js', ext: 'html js' })
+    .on('change', ['test'])
+    .on('restart', function() {
+      console.log("Restarted server");
+    });
 });
