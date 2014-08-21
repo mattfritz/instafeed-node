@@ -1,7 +1,9 @@
 var gulp     = require('gulp'),
     mocha    = require('gulp-mocha'),
     istanbul = require('gulp-istanbul'),
-    exit     = require('gulp-exit');
+    exit     = require('gulp-exit'),
+    config   = require('config'),
+    app      = require('./app');
 
 var paths = {
       test: ['./test/*.js'],
@@ -26,4 +28,8 @@ gulp.task('test', function() {
     });
 });
 
-
+gulp.task('serve', function() {
+  var port = config.get('App.Port');
+  app.listen(port);
+  console.log('Server is running at http://localhost:' + port);
+});

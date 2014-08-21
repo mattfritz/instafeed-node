@@ -15,7 +15,7 @@ var port           = config.get('App.Port'),
     igCallbackPath = config.get('Instagram.callbackPath'),
     tags           = config.get('Instagram.tags');
 
-mongoose.connect(mongo);
+//mongoose.connect(mongo);
 
 app.use(bodyParser());
 
@@ -53,8 +53,5 @@ app.route(igCallbackPath)
 app.route('/').get(function(req, res) {
   res.send('<h1>THIS IS WORKING</h1>');
 });
-// Server
-app.listen(port);
-console.log('Server is running at http://localhost:' + port);
 
 module.exports = app;
