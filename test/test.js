@@ -1,6 +1,7 @@
 var config    = require('config'),
     request   = require('supertest'),
     chai      = require('chai'),
+    rs        = require('randomstring'),
     app       = require('../lib/app');
 
 describe('App', function() {
@@ -17,12 +18,13 @@ describe('App', function() {
 
   describe('GET /tags/yolo', function() {
     it('responds with the challenge key', function(done) {
+      var challengeKey = rs.generate();
       request(app)
         .get('/tags/yolo')
-        .query('hub.challenge=a1b2c3d4')
+        .query('hub.challenge=' + challengeKey)
         .expect('Content-Type', /html/)
         .expect(200)
-        .expect('a1b2c3d4', done);
+        .expect(challengeKey, done);
     });
   });
 

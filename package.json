@@ -16,6 +16,7 @@
     "gulp-mocha": "~1.0.0",
     "gulp-exit": "0.0.2",
     "gulp-istanbul": "~0.2.2",
-    "gulp-nodemon": "~1.0.4"
+    "gulp-nodemon": "~1.0.4",
+    "randomstring": "~1.0.3"
   }
 }
