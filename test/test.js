@@ -3,10 +3,14 @@ var config    = require('config'),
     chai      = require('chai'),
     app       = require('../app').app;
 
-describe('GET /', function() {
-  it('responds with HTML', function(done) {
-    request(app)
+describe('App', function() {
+
+  describe('GET /', function() {
+    it('responds with HTML', function(done) {
+      request(app)
       .get('/')
       .expect(200, done);
+    });
   });
+
 });
