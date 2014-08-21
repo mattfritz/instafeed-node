@@ -8,9 +8,10 @@ describe('App', function() {
   describe('GET /', function() {
     it('responds with HTML', function(done) {
       request(app)
-      .get('/')
-      .expect(200)
-      .expect('<h1>THIS IS WORKING</h1>', done)
+        .get('/')
+        .expect('Content-Type', /html/)
+        .expect(200)
+        .expect('<h1>THIS IS WORKING</h1>', done)
     });
   });
 
@@ -19,6 +20,8 @@ describe('App', function() {
       request(app)
         .get('/tags/yolo')
         .query('hub.challenge=a1b2c3d4')
+        .expect('Content-Type', /html/)
+        .expect(200)
         .expect('a1b2c3d4', done);
     });
   });
