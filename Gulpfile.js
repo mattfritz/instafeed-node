@@ -14,7 +14,7 @@ var mochaConfig = {
       timeout: 2000
     };
 
-gulp.task('default', ['test', 'serve']);
+gulp.task('default', ['test']);
 
 gulp.task('test', function() {
   return gulp.src(paths.app)
